@@ -54,7 +54,6 @@ function saveWeatherRes(data) {
 $('.weather-list').on('click', '.add-comment', function () {
     var newComment = $(this).parents('.input-group').find('.weather-comment').val()//$('.weather-comment').val();
     var thisCity = $(this).parents('.current-weather').data().name;
-    var thisCityIndex = $(this).parents('.current-weather').index();
     for (var i = 0; i < weather.length; i++) {
         if (thisCity ===  weather[i].city) {
         weather[i].comments.push(newComment);
@@ -64,7 +63,11 @@ $('.weather-list').on('click', '.add-comment', function () {
 });
 
 $('.weather-list').on('click', '.delete-comments', function () {
-    $(this).closest('.current-weather').empty();
-    var deleteIndex = $(this).parents('.current-weather').index();
-    weather.splice(index, 1);  
+    // var deleteIndex = $(this).parents('.current-weather').index();
+    for (var i = 0; i < weather.length; i++) {
+        if ($(this).parents('.current-weather').data().name === weather[i].city)
+        weather.splice(i, 1);        
+    }
+    $(this).closest('.current-weather').remove();
+    renderPage();
 });

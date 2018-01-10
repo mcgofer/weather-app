@@ -16,10 +16,12 @@
 </head>
 
 <body>
-    <div class="form-group col-md-8">
-        <h1>Weather Chat</h1>
+    <div class="form-group col-md-8 col-md-offset-2 rounded">
+        <h1>Weather Chat
+            <img class="weather-image" src="http://www.pngmart.com/files/3/Weather-PNG-Free-Download.png">
+        </h1>
         <br>
-        <div class="input-group">
+        <div class="input-group col-md-11 col-md-offset-0.5">
             <input type="text" class="form-control" id="city-input" placeholder="Enter City">
             <span class="input-group-btn">
                 <button class="btn btn-primary get-temp" type="submit">Get Temp</button>
@@ -34,26 +36,34 @@
     <script type="text/javascript" src="bootstrap/dist/js/bootstrap.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="handlebars/dist/handlebars.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/3.0.2/css/font-awesome.min.css"
+    />
     <script id="weather-template" type="text/x-handlebars-template">
         {{#each handlebarsObject}}
-        <div class="current-weather col-md-8" data-name="{{city}}">
-
-                <button type="button" class="btn btn-default fa fa-trash fa-lg delete-comments" aria-hidden="true"></button>                
-                <h3 class="city-name text-uppercase">{{city}}</h3> 
-            {{cel}} &#8451; / {{far}} &#8457; - on {{date}}
-            <div class='weather-comments' data-name="{{city}}">
+        
+        <div class="current-weather col-md-8 col-md-offset-2" data-name="{{city}}" data-id="{{id}}">
+            <button type="button" class="btn btn-default fa fa-trash fa-lg delete-comments" aria-hidden="true"></button>                
+            <h3 class="city-name text-uppercase">
+                <img class="globe" src="https://www.bwf.com/wp-content/uploads/2013/11/earth2.png">
+                {{city}}
+            </h3>
+            <p>
+            {{cel}} &#8451; / {{far}} &#8457;  on {{date}}
+            </p>
+            <br>
+            <ul class='weather-comments' data-name="{{city}}">
                 {{#each comments}}
-                <p>{{this}}</p>
+                <li>{{this}}</li>
                 {{/each}}
-            </div>
+            </ul>
             <div class="input-group comment-form">
-                    <input type="text" class="form-control weather-comment" placeholder="Comment about the weather in {{city}}">
-                    <span class="input-group-btn">
-                        <button class="btn btn-success add-comment" type="submit">Comment</button>
-                        <br>
-                    </span>
+                <input type="text" class="form-control weather-comment" placeholder="Comment on the weather in {{city}}">
+                <span class="input-group-btn">
+                    <button class="btn btn-success add-comment" type="submit">Comment</button>
+                </span>
             </div>
         </div>
+        <br>        
         {{/each}}
       </script>
     <script src="./script.js"></script>
