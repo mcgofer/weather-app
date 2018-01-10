@@ -35,12 +35,16 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="handlebars/dist/handlebars.min.js"></script>
     <script id="weather-template" type="text/x-handlebars-template">
+        {{#each handlebarsObject}}
         <div class="current-weather col-md-8" data-name="{{city}}">
+
                 <button type="button" class="btn btn-default fa fa-trash fa-lg delete-comments" aria-hidden="true"></button>                
                 <h3 class="city-name text-uppercase">{{city}}</h3> 
             {{cel}} &#8451; / {{far}} &#8457; - on {{date}}
             <div class='weather-comments' data-name="{{city}}">
-                {{comments}}
+                {{#each comments}}
+                <p>{{this}}</p>
+                {{/each}}
             </div>
             <div class="input-group comment-form">
                     <input type="text" class="form-control weather-comment" placeholder="Comment about the weather in {{city}}">
@@ -50,6 +54,7 @@
                     </span>
             </div>
         </div>
+        {{/each}}
       </script>
     <script src="./script.js"></script>
 </body>

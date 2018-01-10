@@ -36,11 +36,15 @@ function renderPage() {
     $('.weather-list').empty();
     var source = $('#weather-template').html();
     var template = Handlebars.compile(source);
-    for (var i = 0; i < weather.length; i++) {
-        var newHTML = template(weather[i])        
-        $('.weather-list').append(newHTML);
+    var weatherData = {"handlebarsObject": weather };
+    var newHTML = template(weatherData);
+    $('.weather-list').append(newHTML);
 
-    }
+    // for (var i = 0; i < weather.length; i++) {
+    //     var newHTML = template(weather[i])        
+    //     $('.weather-list').append(newHTML);
+
+    // }
 }
 
 function saveWeatherRes(data) {
